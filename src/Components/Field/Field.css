@@ -1,0 +1,166 @@
+/*generic styling*/
+.field-area {
+  background-color: transparent;
+  width: 460px;
+
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  position: absolute;
+}
+
+/*message styling*/
+.message {
+  background-color: transparent;
+  text-align: left;
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: normal;
+}
+
+.message.success {
+  color: #0e6245;
+}
+
+.message.error {
+  color: #ed0131;
+}
+
+.text-input {
+  height: 28px;
+  width: 95%;
+  margin-top: -1rem;
+  overflow: hidden;
+  resize: none;
+  position: static;
+
+  left: 0px;
+  top: 26px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+
+  background-color: #f8fafc;
+  border-radius: 4px;
+  border: none;
+
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+
+  letter-spacing: 0.01em;
+
+  /* Text / Primary - Basic */
+
+  color: #3b4256;
+}
+
+.text-input.success {
+  outline: 0;
+  border: 1px solid #0e6245;
+}
+
+.text-input.error {
+  outline: 0;
+  border: 1px solid #ed0131;
+}
+
+.text-input:focus {
+  outline: 0;
+  border: 1px solid #0048d9;
+}
+
+.text-input.text-area {
+  background-color: transparent;
+  height: 139px;
+  background-color: #f8fafc;
+}
+
+.text-input.select {
+  height: 48px;
+  width: 460px;
+}
+
+::placeholder {
+  color: #b8bcca;
+  position: static;
+  height: 24px;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.01em;
+}
+
+select {
+  appearance: none;
+  width: 1px;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1;
+  border: 0;
+  border-radius: 1px;
+  height: 4px;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+    no-repeat right;
+  -webkit-appearance: none;
+  background-position-x: 425px;
+}
+
+.character-count {
+  background-color: transparent;
+  font-weight: 400;
+  color: #6f7482;
+  width: 448px;
+  text-align: right;
+  margin-top: -2rem;
+}
+
+/*eye and calendar icons*/
+.input-type-icon {
+  position: absolute;
+  background-color: transparent;
+  font-weight: 400;
+  color: #b8bcca;
+  width: 24px;
+  float: right;
+  text-align: right;
+  margin-top: -2.25rem;
+  z-index: 0;
+  bottom: -8%;
+  right: 3%;
+}
+
+.input-type-icon:hover {
+  cursor: pointer;
+}
+
+.text-input.disabled {
+  background-color: white;
+  margin-left: -0.75rem;
+}
+
+/* .dropdown-icon {
+  position: absolute;
+  left: 29.17%;
+  right: 29.17%;
+  top: 41.67%;
+  bottom: 37.5%;
+} */

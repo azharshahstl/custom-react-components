@@ -1,0 +1,25 @@
+.form-wrapper {
+  width: 50%;
+  margin-left: 20%;
+  margin: auto;
+}
+
+.form {
+  background-color: transparent;
+}
+
+.question {
+  background-color: transparent;
+  width: 50%;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.switch {
+  background-color: transparent;
+  margin-left: -75%;
+}
+
+.question Button {
+  margin-top: -2rem;
+}

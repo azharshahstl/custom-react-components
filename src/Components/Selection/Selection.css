@@ -1,0 +1,93 @@
+.selection-area {
+  background-color: transparent;
+  height: 30px;
+  width: 100px;
+  text-align: left;
+  display: flex;
+}
+
+label p {
+  position: absolute;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  font-family: "IBM Plex", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+/*checkbox styles*/
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid #3b4256;
+}
+
+.checkbox.disabled {
+  background-color: red;
+}
+
+input[type="checkbox"]:hover {
+  background-color: #e2e7ed;
+  box-shadow: #e2e7ed 0 0 20px;
+  border-radius: 3px;
+}
+
+input[type="checkbox"]:after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  font-size: 19px;
+  font-weight: 600;
+  display: none;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #3b4256;
+}
+
+input[type="checkbox"]:checked::after {
+  display: block;
+  color: white;
+}
+
+/*radio button styles*/
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid #3b4256;
+  cursor: pointer;
+}
+
+input[type="radio"]:hover {
+  background-color: #e2e7ed;
+  box-shadow: #e2e7ed 0 0 20px;
+}
+
+input[type="radio"]::after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  content: "\f111c";
+  background: #3b4256;
+  border-radius: 60%;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  margin-top: 3px;
+  margin-left: 3.45px;
+  display: none;
+  height: 13px;
+}
+
+input[type="radio"]:checked::after {
+  display: block;
+}
