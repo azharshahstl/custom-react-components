@@ -19,6 +19,7 @@ function Field({
   menuItems,
   getMenuItem,
   getTextInput,
+  textInputEntered,
 }) {
   const [valueUpdater, setValueUpdater] = useState(0);
   const [inputClass, setInputClass] = useState("text-input");
@@ -43,6 +44,10 @@ function Field({
   function getItem(event) {
     getMenuItem(event.target.value);
   }
+
+  const textInputEnterPressed = (event) => {
+    textInputEntered(event);
+  };
 
   // function getInput(event) {
   //   getTextInput(event.target.value);
@@ -118,7 +123,8 @@ function Field({
       ) : (
         <textarea
           // onChange={getInput}
-          onKeyUp={characterCounter}
+          // onKeyUp={characterCounter}
+          onKeyUp={textInputEntered}
           type="password"
           rows="2"
           cols="65"

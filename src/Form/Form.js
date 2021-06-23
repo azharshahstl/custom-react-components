@@ -1,6 +1,6 @@
 import { type } from "language-tags";
 import "./Form.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../Components/Button/Button";
 import Label from "../Components/Label/Label";
 import TextInput from "../Components/TextInput/TextInput";
@@ -9,6 +9,8 @@ import Select from "../Components/Select/Select";
 import Checkbox from "../Components/Checkbox/Checkbox";
 import Radio from "../Components/Radio/Radio";
 import Switch from "../Components/Switch/Switch";
+import { data } from "jquery";
+// import axios from "axios";
 
 function Form(props) {
   const [switchToggled, setSwitchToggled] = useState(false);
@@ -20,22 +22,31 @@ function Form(props) {
 
   //you can use this to store the Select menu item
   const [menuItem, setMenuItem] = useState("");
+  const [userName, setUserName] = useState("");
 
   //my Select component takes in an array or strings
   //these strings are displayed in a drop down menu
   //play around with the values to make sure they properly get displayed
-  let menuItems = ["Google", "Apple"];
+  let menuItems = ["Google"];
 
   //gets menu item that a user selects from Select component
-  function getMenuItem(item) {
-    console.log(item);
+  function getMenuItem(menuItems) {
+    console.log("in getmenuitem", menuItems);
     // setMenuItem(item);
   }
+
+  const textInputEntered = (event) => {
+    console.log("inside text input entered", event.target.value, event.keyCode);
+    if (event.keyCode === 13) {
+      fetchGithubName(event.target.value);
+    }
+  };
 
   //You can put this function on an onChange or onKeyUp event
   //attach it to a div that wraps a TextInput
   function getTextInput(event) {
-    console.log(event.target.value);
+    // console.log(event);
+    // setUserName(event.target.value);
   }
 
   //toggles switch component
@@ -43,6 +54,24 @@ function Form(props) {
   function switchOn() {
     setSwitchToggled(!switchToggled);
   }
+
+  const fetchGithubName = (githubName) => {
+    console.log(githubName);
+    fetch(`https://api.github.com/users/${githubName}`)
+      .then((response) => response.json())
+      .then((foundNameObject) => {
+        if (foundNameObject) {
+          fetch(`https://api.github.com/users/${foundNameObject.login}/repos`)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              const urls = data.map((d) => d.html_url);
+              menuItems.push(...urls);
+              console.log("menuItems", menuItems);
+            });
+        }
+      });
+  };
 
   return (
     <div className="form-wrapper">
@@ -57,6 +86,7 @@ function Form(props) {
             message={message}
             read={false}
             getTextInput={getTextInput}
+            textInputEntered={textInputEntered}
             // value="some sentence okay"
           />
         </div>

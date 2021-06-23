@@ -10,6 +10,8 @@ function TextInput({
   read,
   value,
   getTextInput,
+  textInputEntered,
+  menuItems,
 }) {
   return (
     <Field
@@ -21,6 +23,8 @@ function TextInput({
       read={read}
       value={value}
       getTextInput={getTextInput}
+      textInputEntered={textInputEntered}
+      menuItems={menuItems}
     />
   );
 }
