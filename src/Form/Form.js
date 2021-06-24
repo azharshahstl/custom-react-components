@@ -62,17 +62,16 @@ function Form(props) {
     fetch(`https://api.github.com/users/${githubName}`)
       .then((response) => response.json())
       .then((foundNameObject) => {
-        console.log(foundNameObject);
         if (foundNameObject.message === "Not Found") {
           setMessage("error");
+          setMenuItems([]);
         } else {
           fetch(`https://api.github.com/users/${foundNameObject.login}/repos`)
             .then((response) => response.json())
             .then((data) => {
               const urls = data.map((d) => d.html_url);
-              console.log(urls);
               setMenuItems([...urls]);
-              console.log("menuItems", menuItems);
+              setMessage("");
             });
         }
       });
