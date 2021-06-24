@@ -20,6 +20,7 @@ function Field({
   getMenuItem,
   getTextInput,
   textInputEntered,
+  errorMessage,
 }) {
   const [valueUpdater, setValueUpdater] = useState(0);
   const [inputClass, setInputClass] = useState("text-input");
@@ -29,6 +30,8 @@ function Field({
   const [maxLength, setMaxLength] = useState(225);
   const [characterCount, setCharacterCount] = useState(0);
   const [disabled, setDisabled] = useState(false);
+
+  console.log("in Field", menuItems);
 
   useEffect(() => {
     if (fieldType == "text-input") {
@@ -57,9 +60,9 @@ function Field({
   function changeClassStyle() {
     let localInputClass = inputClass;
 
-    if (fieldType == "text-area") {
+    if (fieldType === "text-area") {
       localInputClass = "text-input text-area";
-    } else if (fieldType == "select") {
+    } else if (fieldType === "select") {
       localInputClass = "text-input select";
     }
 
@@ -69,7 +72,7 @@ function Field({
     console.log("local: " + localInputClass);
 
     //checks to see if a message prop was passed in
-    if (message != "" && !read) {
+    if (message !== "" && !read) {
       changeMessageStyle(localInputClass);
     } else {
       setInputClass(localInputClass);
@@ -78,16 +81,18 @@ function Field({
 
   //sets the correct classes for colored borders and colored success/error message
   function changeMessageStyle(localInputClass) {
-    let messageDescription = message.charAt(0).toUpperCase() + message.slice(1);
+    // let messageDescription = message.charAt(0).toUpperCase() + message.slice(1);
+    // let messageDescription = "User Not Found";
     // console.log("message style: " + localInputClass);
-    if (message == "success") {
+    if (message === "success") {
       setInputClass(localInputClass + " success");
       setMessageClass("message success");
       setMessageDescription(messageDescription);
-    } else if (message == "error") {
+    } else if (message === "error") {
       setInputClass(localInputClass + " error");
       setMessageClass("message error");
       setMessageDescription(messageDescription);
+      // setMessageDescription("User Not Found");
     }
   }
 
@@ -114,7 +119,7 @@ function Field({
       />
 
       {/*displays a select dropdown or textarea box depending on input*/}
-      {fieldType == "select" ? (
+      {fieldType === "select" ? (
         <select onClick={getItem} className={inputClass}>
           {menuItems.map((menuItem) => (
             <option value={menuItem}>{menuItem}</option>
@@ -156,7 +161,7 @@ function Field({
 
       {/*displays success or error message when message is passed in */}
       {message != "" && !read ? (
-        <h6 className={messageClass}>{messageDescription} message</h6>
+        <h6 className={messageClass}>{messageDescription} User Not Found</h6>
       ) : null}
     </div>
   );

@@ -12,7 +12,9 @@ function TextInput({
   getTextInput,
   textInputEntered,
   menuItems,
+  // errorMessage,
 }) {
+  console.log(menuItems);
   return (
     <Field
       fieldType="text-input"
@@ -25,6 +27,7 @@ function TextInput({
       getTextInput={getTextInput}
       textInputEntered={textInputEntered}
       menuItems={menuItems}
+      // errorMessage={errorMessage}
     />
   );
 }

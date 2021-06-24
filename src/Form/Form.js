@@ -19,26 +19,29 @@ function Form(props) {
   //when message = "error", displays error message
   //when message = "", displays nothing
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   //you can use this to store the Select menu item
   const [menuItem, setMenuItem] = useState("");
   const [userName, setUserName] = useState("");
+  const [menuItems, setMenuItems] = useState(["Placeholder"]);
 
   //my Select component takes in an array or strings
   //these strings are displayed in a drop down menu
   //play around with the values to make sure they properly get displayed
-  let menuItems = ["Google"];
+  // let menuItems = ["Google"];
 
   //gets menu item that a user selects from Select component
-  function getMenuItem(menuItems) {
-    console.log("in getmenuitem", menuItems);
-    // setMenuItem(item);
+  function getMenuItem(menuItem) {
+    console.log("in getmenuitem", menuItem);
+    window.open(menuItem, "_blank");
   }
-
+  let githubName = "";
   const textInputEntered = (event) => {
     console.log("inside text input entered", event.target.value, event.keyCode);
     if (event.keyCode === 13) {
-      fetchGithubName(event.target.value);
+      githubName = event.target.value;
+      fetchGithubUrls(githubName);
     }
   };
 
@@ -55,18 +58,20 @@ function Form(props) {
     setSwitchToggled(!switchToggled);
   }
 
-  const fetchGithubName = (githubName) => {
-    console.log(githubName);
+  const fetchGithubUrls = (githubName) => {
     fetch(`https://api.github.com/users/${githubName}`)
       .then((response) => response.json())
       .then((foundNameObject) => {
-        if (foundNameObject) {
+        console.log(foundNameObject);
+        if (foundNameObject.message === "Not Found") {
+          setMessage("error");
+        } else {
           fetch(`https://api.github.com/users/${foundNameObject.login}/repos`)
             .then((response) => response.json())
             .then((data) => {
-              console.log(data);
               const urls = data.map((d) => d.html_url);
-              menuItems.push(...urls);
+              console.log(urls);
+              setMenuItems([...urls]);
               console.log("menuItems", menuItems);
             });
         }
@@ -87,6 +92,7 @@ function Form(props) {
             read={false}
             getTextInput={getTextInput}
             textInputEntered={textInputEntered}
+            // errorMessage={errorMessage}
             // value="some sentence okay"
           />
         </div>
@@ -103,9 +109,9 @@ function Form(props) {
           />
         </div>
         <div style={{ height: "7rem" }} className="spacer"></div>
-        <div className="question">
+        {/* <div className="question">
           <Button type="enabled" size="small" label="Submit" />
-        </div>
+        </div> */}
         {/* <div className="question">
           <Label type="field" size="small" label="Do you live in the US?" />
           <div className="switch">
